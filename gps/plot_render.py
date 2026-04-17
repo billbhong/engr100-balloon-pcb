@@ -156,6 +156,39 @@ def _save_mpl_flight_3d(
             color="steelblue", lw=3.0, alpha=0.9, label="Ascent")
     ax.plot(dx_arr - x0, dy_arr - y0, dz_arr,
             color="orangered", lw=3.0, alpha=0.9, label="Descent")
+    
+    # # Add Directional Arrows to Matplotlib 3D 
+    # def add_3d_arrows(x_path, y_path, z_path, arrow_color, num_arrows=25):
+    #     if len(x_path) < 10: 
+    #         return
+            
+    #     # 1. Grab evenly spaced indices along the line
+    #     idx = np.linspace(0, len(x_path) - 5, num_arrows, dtype=int)
+        
+    #     x_pts = x_path[idx]
+    #     y_pts = y_path[idx]
+    #     z_pts = z_path[idx]
+        
+    #     # 2. Calculate direction vectors
+    #     u = x_path[idx + 4] - x_pts
+    #     v = y_path[idx + 4] - y_pts
+    #     w = z_path[idx + 4] - z_pts
+        
+    #     # 3. Size the arrows
+    #     span = max(np.ptp(x_path), np.ptp(y_path), np.ptp(z_path))
+    #     # Slightly smaller overall length since it's just the head now
+    #     arrow_len = span * 0.09
+        
+    #     # 4. Plot the arrows using quiver
+    #     # arrow_length_ratio=1.0 removes the tail entirely
+    #     ax.quiver(x_pts, y_pts, z_pts, u, v, w,
+    #               color=arrow_color, length=arrow_len, normalize=True, 
+    #               arrow_length_ratio=1.0, linewidth=2.0, alpha=0.6)
+
+    # if ax_arr.size:
+    #     add_3d_arrows(ax_arr - x0, ay_arr - y0, az_arr, "steelblue", num_arrows=15)
+    # if dx_arr.size:
+    #     add_3d_arrows(dx_arr - x0, dy_arr - y0, dz_arr, "orangered", num_arrows=15)
 
     if ax_arr.size and dx_arr.size:
         gap_x = np.array([ax_arr[-1], dx_arr[0]]) - x0
@@ -521,10 +554,10 @@ else:
         tube_r,
     )
     rr = ruler["spine_tube_radius"]
-    pl.add_mesh(ruler["spine"].tube(radius=rr), color="#252525", lighting=False)  # type: ignore
+    pl.add_mesh(ruler["spine"].tube(radius=rr), color="#727272", lighting=False)  # type: ignore
     pl.add_mesh(
         ruler["ticks"],
-        color="#252525",
+        color="#727272",
         lighting=False,
         line_width=5,
         render_lines_as_tubes=True,
@@ -532,7 +565,7 @@ else:
     pl.add_point_labels(
         ruler["label_points"],
         ruler["labels"],
-        text_color="#FFFFFF",
+        text_color="#FFBF00",
         point_size=0,
         shape=None,
         always_visible=True,
